@@ -13,6 +13,9 @@ function changeHistory(historyButton) {
   const change = document.getElementById(historyId + "Change");
   const historyField = document.getElementById(historyId + "History");
   let value = 0;
+  if (Number(change.value) === 0 || Number(base.value) === 0) {
+    return;
+  }
   if (historyField.childElementCount > 0) {
     const oldValue = Number(historyField.lastChild.textContent);
     if (oldValue < 0) {

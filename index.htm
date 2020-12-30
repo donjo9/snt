@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sværd og Troldom</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+    <h1>Helteskema</h1>
+    <div class="box abillityContainer" id="evne">
+      <div class="abilityControl">
+        <div>
+          <h3>Evne</h3>
+          <input type="number" class="numbers box" id="evneBase" />
+        </div>
+        <div>
+          <input type="number" class="numbers box" id="evneChange" /><button
+            data-history-id="evne"
+            onclick="changeHistory(this)"
+          >
+            Modify
+          </button>
+        </div>
+      </div>
+      <div id="evneHistory" class="history"></div>
+    </div>
+    <div class="box abillityContainer" id="udholdenhed">
+      <div class="abilityControl">
+        <div>
+          <h3>Udholdenhed</h3>
+          <input type="number" class="numbers box" id="udholdenhedBase" />
+        </div>
+        <div>
+          <input
+            type="number"
+            class="numbers box"
+            id="udholdenhedChange"
+          /><button data-history-id="udholdenhed" onclick="changeHistory(this)">
+            Modify
+          </button>
+        </div>
+      </div>
+      <div id="udholdenhedHistory" class="history"></div>
+    </div>
+    <div class="box abillityContainer" id="held">
+      <div class="abilityControl">
+        <div>
+          <h3>Held</h3>
+          <input type="number" class="numbers box" />
+        </div>
+        <div>
+          <input type="number" class="numbers box" /><button>Modify</button>
+        </div>
+      </div>
+      <div id="heldHistory" class="history"></div>
+    </div>
+    <div class="box" id="udstyr">
+      <h3>Udstyr</h3>
+      <textarea class="box"></textarea>
+    </div>
+    <div class="box" id="guld">
+      Guld<input type="number" class="numbers box" />
+    </div>
+    <div class="box" id="skatte">
+      <h3>Skatte</h3>
+      <textarea class="box"></textarea>
+    </div>
+    <div class="box" id="proviant">
+      <h3>Proviant</h3>
+      <textarea class="box"></textarea>
+    </div>
+
+    <h1>Monsterskema</h1>
+    <div id="monster" class="box">Monsters</div>
+  </body>
+  <script src="script.js"></script>
+</html>

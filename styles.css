@@ -1,0 +1,174 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+* {
+  box-sizing: inherit;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  color: rgb(54, 54, 54);
+  background-color: #999189;
+  font-family: "Bangers", cursive;
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  display: grid;
+  grid-template-areas:
+    "h-header h-header m-header m-header"
+    "evne evne monster monster"
+    "udholdenhed udholdenhed monster monster"
+    "held held monster monster"
+    "udstyr guld monster monster"
+    "udstyr skatte monster monster"
+    "udstyr proviant monster monster";
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.abillityContainer {
+  max-width: 50vw;
+  display: flex;
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.abillityContainer h3 {
+  display: inline-block;
+}
+
+.abilityControl {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.5rem;
+}
+
+.abilityControl button {
+  height: 2rem;
+  padding: 0.25rem 1rem;
+  border-radius: 25%;
+  border: 3px rgb(54, 54, 54) solid;
+  background-color: inherit;
+}
+
+input[type="number"].numbers {
+  font-family: "Indie Flower", cursive;
+  font-size: 2rem;
+  appearance: textfield;
+  height: 2.5rem;
+  width: 3rem;
+  padding: 0.25rem;
+  background-color: inherit;
+  text-align: center;
+}
+
+.history {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1 {
+  max-width: 45vw;
+}
+.history span {
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  vertical-align: center;
+  line-height: 2rem;
+  margin: 0.25rem;
+}
+
+.history span:not(:last-child)::before {
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  width: 2rem;
+  height: 0.2rem;
+  content: "";
+  background-color: rgba(54, 54, 54, 0.9);
+  transform: rotate(-15deg);
+}
+
+body > h1:first-of-type {
+  grid-area: h-header;
+}
+body > h1:last-of-type {
+  grid-area: m-header;
+}
+
+body > h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  margin: 0.5rem;
+  border: solid black;
+  border-color: black;
+  padding: 0.5rem 1rem;
+  border-width: 3px 4px 3px 5px;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  transform: rotate(0.5deg);
+}
+#evne {
+  grid-area: evne;
+}
+
+#udholdenhed {
+  grid-area: udholdenhed;
+}
+
+#held {
+  grid-area: held;
+}
+
+#udstyr {
+  grid-area: udstyr;
+  display: flex;
+  flex-direction: column;
+}
+
+#guld {
+  grid-area: guld;
+}
+
+#skatte {
+  grid-area: skatte;
+  display: flex;
+  align-items: center;
+}
+textarea {
+  font-family: inherit;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  width: 100%;
+  background-color: inherit;
+  resize: none;
+}
+textarea:focus {
+  outline: none;
+}
+
+#proviant {
+  grid-area: proviant;
+  display: flex;
+  align-items: center;
+}
+
+#monster {
+  grid-area: monster;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.red {
+  background-color: red;
+}

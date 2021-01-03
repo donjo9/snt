@@ -13,13 +13,15 @@
       <div class="abilityControl">
         <div>
           <h3>Evne</h3>
-          <input type="number" class="numbers box" id="evneBase" />
+          <input type="number" class="numbers box inputBox" id="evneBase" />
         </div>
         <div>
-          <input type="number" class="numbers box" id="evneChange" /><button
-            data-history-id="evne"
-            onclick="changeHistory(this)"
-          >
+          <input
+            type="number"
+            class="numbers box inputBox"
+            id="evneChange"
+            value="-1"
+          /><button data-history-id="evne" onclick="changeHistory(this)">
             Modify
           </button>
         </div>
@@ -30,13 +32,18 @@
       <div class="abilityControl">
         <div>
           <h3>Udholdenhed</h3>
-          <input type="number" class="numbers box" id="udholdenhedBase" />
+          <input
+            type="number"
+            class="numbers inputBox box"
+            id="udholdenhedBase"
+          />
         </div>
         <div>
           <input
             type="number"
-            class="numbers box"
+            class="numbers inputBox box inputBox"
             id="udholdenhedChange"
+            value="-2"
           /><button data-history-id="udholdenhed" onclick="changeHistory(this)">
             Modify
           </button>
@@ -48,10 +55,17 @@
       <div class="abilityControl">
         <div>
           <h3>Held</h3>
-          <input type="number" class="numbers box" />
+          <input type="number" class="numbers inputBox box" id="heldBase" />
         </div>
         <div>
-          <input type="number" class="numbers box" /><button>Modify</button>
+          <input
+            type="number"
+            class="numbers inputBox box"
+            id="heldChange"
+            value="-1"
+          /><button data-history-id="held" onclick="changeHistory(this)">
+            Modify
+          </button>
         </div>
       </div>
       <div id="heldHistory" class="history"></div>
@@ -61,7 +75,11 @@
       <textarea></textarea>
     </div>
     <div class="box" id="guld">
-      Guld<input type="number" class="numbers box" />
+      Guld<input
+        type="number"
+        class="numbers inputBox box"
+        style="width: 4.3rem"
+      />
     </div>
     <div class="box" id="skatte">
       <h3>Skatte</h3>
@@ -73,7 +91,48 @@
     </div>
 
     <h1>Monsterskema</h1>
-    <div id="monster" class="box">Monsters</div>
+    <div id="monsters" class="box">
+      <div id="monsterControl">
+        <input
+          id="monsterName"
+          class="inputBox box"
+          type="text"
+          placeholder="monster"
+        />
+        <input
+          id="monsterEvne"
+          class="numbers inputBox box"
+          type="number"
+          placeholder="Evne"
+        />
+        <input
+          id="monsterUdh"
+          class="numbers inputBox box"
+          type="number"
+          placeholder="Udh."
+        />
+        <button onclick="addMonster()">Add</button>
+      </div>
+      <div id="monsterContainer">
+        <!-- <div class="monster">
+          <span>Orge</span>
+          <div>
+            <input class="numbers inputBox box" type="number" /><button>
+              Dmg
+            </button>
+          </div>
+
+          Evne <span>6</span><br />
+          Udholdenhed
+
+          <div class="history"><span>6</span><span>6</span></div>
+        </div> -->
+      </div>
+    </div>
+    <div id="noter" class="box">
+      <h3>Noter</h3>
+      <textarea></textarea>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

@@ -112,4 +112,8 @@ function addMonster() {
   monster.appendChild(udholdenhedHistory);
 
   monsterContainer.appendChild(monster);
+
+  monsterName.value = "";
+  monsterEvne.value = "";
+  monsterUdh.value = "";
 }

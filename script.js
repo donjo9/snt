@@ -1,11 +1,4 @@
-let evne = null;
-window.addEventListener("load", function () {
-  evne = document.getElementById("evne");
-});
-
-function toggleRed() {
-  evne.classList.toggle("red");
-}
+let lastSave = "";
 
 function changeHistory(historyButton) {
   const historyId = historyButton.getAttribute("data-history-id");
@@ -28,6 +21,7 @@ function changeHistory(historyButton) {
   const span = document.createElement("span");
   span.innerText = value;
   historyField.appendChild(span);
+  delayedSave();
 }
 
 function dmgMonster(monsterId) {
@@ -117,3 +111,153 @@ function addMonster() {
   monsterEvne.value = "";
   monsterUdh.value = "";
 }
+
+function saveGame() {
+  console.log("saving");
+  const udstyr = document
+    .getElementById("udstyr")
+    .getElementsByTagName("textarea")[0].value;
+  const proviant = document
+    .getElementById("proviant")
+    .getElementsByTagName("textarea")[0].value;
+
+  const skatte = document
+    .getElementById("skatte")
+    .getElementsByTagName("textarea")[0].value;
+
+  const evneBase = document.getElementById("evneBase").value;
+  const evneHistory = document.getElementById("evneHistory");
+  let evneCurrent = "0";
+  if (evneHistory.childElementCount) {
+    evneCurrent = evneHistory.lastChild.innerText;
+  }
+
+  const udholdenhedBase = document.getElementById("udholdenhedBase").value;
+  const udholdenhedHistory = document.getElementById("udholdenhedHistory");
+  let udholdenhedCurrent = "0";
+  if (udholdenhedHistory.childElementCount) {
+    udholdenhedCurrent = udholdenhedHistory.lastChild.innerText;
+  }
+
+  const heldBase = document.getElementById("heldBase").value;
+  const heldHistory = document.getElementById("heldHistory");
+  let heldCurrent = "0";
+  if (heldHistory.childElementCount) {
+    heldCurrent = heldHistory.lastChild.innerText;
+  }
+
+  const guld = document.getElementById("guld").getElementsByTagName("input")[0]
+    .value;
+  const noter = document
+    .getElementById("noter")
+    .getElementsByTagName("textarea")[0].value;
+  const data = {
+    udstyr,
+    proviant,
+    skatte,
+    evneBase,
+    udholdenhedBase,
+    heldBase,
+    evneCurrent,
+    udholdenhedCurrent,
+    heldCurrent,
+    guld,
+    noter,
+  };
+  let save = "hello";
+  if (lastSave) {
+    save = lastSave;
+  }
+  localStorage.setItem(save, JSON.stringify(data));
+  localStorage.setItem("lastSave", save);
+}
+
+function init() {
+  const lastSave = localStorage.getItem("lastSave");
+  if (lastSave) {
+    load(lastSave);
+  } else {
+    console.log("No last save found");
+  }
+  const textareas = document.getElementsByTagName("textarea");
+  if (textareas) {
+    for (i = 0; i < textareas.length; i++) {
+      textareas[i].addEventListener("input", delayedSave);
+    }
+  }
+}
+
+let saveDelay = null;
+
+function delayedSave() {
+  if (saveDelay) {
+    clearTimeout(saveDelay);
+  }
+  saveDelay = setTimeout(saveGame, 1000);
+}
+
+function load(saveGame) {
+  lastSave = saveGame;
+  const load = localStorage.getItem(lastSave);
+  if (load) {
+    const save = JSON.parse(load);
+
+    const udstyr = document
+      .getElementById("udstyr")
+      .getElementsByTagName("textarea")[0];
+    udstyr.value = save.udstyr;
+
+    const proviant = document
+      .getElementById("proviant")
+      .getElementsByTagName("textarea")[0];
+
+    proviant.value = save.proviant;
+
+    const skatte = document
+      .getElementById("skatte")
+      .getElementsByTagName("textarea")[0];
+    skatte.value = save.skatte;
+
+    const evneBase = document.getElementById("evneBase");
+    evneBase.value = save.evneBase;
+
+    const evneHistory = document.getElementById("evneHistory");
+    if (save.evneCurrent > 0) {
+      const span = document.createElement("span");
+      span.textContent = save.evneCurrent;
+      evneHistory.appendChild(span);
+    }
+
+    const udholdenhedBase = document.getElementById("udholdenhedBase");
+    udholdenhedBase.value = save.udholdenhedBase;
+
+    const udholdenhedHistory = document.getElementById("udholdenhedHistory");
+    if (save.udholdenhedCurrent > 0) {
+      const span = document.createElement("span");
+      span.textContent = save.udholdenhedCurrent;
+      udholdenhedHistory.appendChild(span);
+    }
+
+    const heldBase = document.getElementById("heldBase");
+    heldBase.value = save.heldBase;
+
+    const heldHistory = document.getElementById("heldHistory");
+    if (save.heldCurrent > 0) {
+      const span = document.createElement("span");
+      span.textContent = save.heldCurrent;
+      heldHistory.appendChild(span);
+    }
+
+    const guld = document
+      .getElementById("guld")
+      .getElementsByTagName("input")[0];
+    guld.value = save.guld;
+
+    const noter = document
+      .getElementById("noter")
+      .getElementsByTagName("textarea")[0];
+    noter.value = save.noter;
+  }
+}
+
+window.onload = init;
